@@ -2,11 +2,8 @@ package com.senior.backend.controller;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-
-import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -41,7 +38,7 @@ public class OrderController {
 
 	@Autowired
 	private IOrderRepository orderRepository;
-	
+
 	@Autowired
 	@Lazy
 	private OrderItensController orderItemController;
@@ -57,80 +54,67 @@ public class OrderController {
 
 		return response;
 	}
-	
-//	private List<OrderItens> listOrderItem(Order order) {
-//		
-//		List<OrderItens> current = new ArrayList<>();
-//		order.getListItens().forEach(item -> {
-//			current.add(item);
-//		});
-//		
-//		
-//		return current;
-//	}
-	
+
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Order findById(@PathVariable("id") Integer id) {
 
 		Order response = orderRepository.returnById(id);
-		
+
 		return response;
 	}
-	
+
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
 	public @ResponseBody Order add(@RequestBody Order newOrder) {
-		
+
 		return getData(newOrder);
 	}
-	
+
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Optional<Order> update(@PathVariable("id") int param,
-			@RequestBody Order newDataOrder) {
+	public @ResponseBody Optional<Order> update(@PathVariable("id") int param, @RequestBody Order newDataOrder) {
 
 		Order current = orderRepository.findById(param).get();
-		current.setDiscount(newDataOrder.getDiscount());	
-//		current.setAmount(newDataOrder.getAmount());
+		current.setDiscount(newDataOrder.getDiscount());
 		current.setDate(newDataOrder.getDate());
-		
+
 		List<OrderItens> listItens = new ArrayList<>();
-		
+
 		listItens = orderItemController.findByOrderId(param);
 		current.setListItens(listItens);
-//		current.setAmount(listItens.get(0).getItens().getPrice());
-		System.out.println("LISTA: "+listItens.get(0).getItens().getPrice());
-		
+		System.out.println("LISTA: " + listItens.get(0).getItens().getPrice());
+
 		Float valorTotal = 0.0f;
-		Float discount = current.getDiscount()/100;
-		
-		for (Integer count = 0 ; count < listItens.size() ; count++) {
-			if(listItens.get(count).getItens().getType() == Type.PRODUCT) {
-				Float priceDiscount = listItens.get(count).getItens().getPrice() * (1-discount) * listItens.get(count).getQuantityPurchased();
+		Float discount = current.getDiscount() / 100;
+
+		for (Integer count = 0; count < listItens.size(); count++) {
+			if (listItens.get(count).getItens().getType() == Type.PRODUCT) {
+				Float priceDiscount = listItens.get(count).getItens().getPrice() * (1 - discount)
+						* listItens.get(count).getQuantityPurchased();
 				valorTotal = (valorTotal + priceDiscount);
 			} else {
-				Float priceNoDiscount = listItens.get(count).getItens().getPrice() * listItens.get(count).getQuantityPurchased();
+				Float priceNoDiscount = listItens.get(count).getItens().getPrice()
+						* listItens.get(count).getQuantityPurchased();
 				valorTotal = (valorTotal + priceNoDiscount);
-			}			
+			}
 			System.out.println(valorTotal);
 			current.setAmount(valorTotal);
-		}		
-		
-		System.out.println("PRECO: "+current.getAmount());
+		}
+
+		System.out.println("PRECO: " + current.getAmount());
 
 		orderRepository.save(current);
 
 		return orderRepository.findById(param);
 	}
-	
+
 	public void getOrderItem(Order obj) {
-		
-		
+
 //		orderItemController
-		
+
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody boolean delete(@PathVariable("id") int id) {
@@ -147,16 +131,10 @@ public class OrderController {
 			newObj.setDate(LocalDateTime.now());
 		}
 		newObj.setListItens(obj.getListItens());
-		
-//		obj.getListItens().forEach(item -> {
-//			if(item.getItens().getType() == Type.PRODUCT) {
-//				newObj.setAmount(item.getItens().getPrice());
-//			}
-//		});
-		
+
 		return orderRepository.save(newObj);
 	}
-	
+
 	private void setMaturityLevel3(Order order) {
 		final String PATH = "localhost:8080/order";
 
@@ -177,18 +155,17 @@ public class OrderController {
 			Order clone = mapper.readValue(mapper.writeValueAsString(order), Order.class);
 
 			clone.setLinks(null);
-			
+
 			Float discount = clone.getDiscount();
 			Float amount = clone.getAmount();
 			LocalDateTime date = clone.getDate();
 			List<OrderItens> listItens = clone.getListItens();
-			
-			
+
 			clone.setDiscount((float) 12.00);
 			clone.setAmount((float) 1234);
 			clone.setDate(LocalDateTime.of(2022, 12, 11, 12, 00));
 			clone.setListItens(listItens);
-			
+
 			String jsonUpdate = mapper.writeValueAsString(clone);
 
 			clone.setDiscount(discount);

@@ -86,12 +86,20 @@ public class OrderItensController {
 			@RequestBody OrderItens newDataOrderItens) {
 
 		OrderItens current = orderItensRepository.findById(param).get();
-		current.setItens(newDataOrderItens.getItens());
 		current.setQuantityPurchased(newDataOrderItens.getQuantityPurchased());
-		current.setOrder(newDataOrderItens.getOrder());
+		current.setItens(newDataOrderItens.getItens());
+
+		Order order = orderController.findById(newDataOrderItens.getOrder().getId());
+		current.setOrder(order);
+		
+		ProductService item = productServiceController.findById(newDataOrderItens.getItens().getId());
+		current.setItens(item);
+		item.setQuantity(item.getQuantity() - newDataOrderItens.getQuantityPurchased());
+		
+		orderController.update(order.getId(), order);
 		
 		orderItensRepository.save(current);
-
+		
 		return orderItensRepository.findById(param);
 	}
 	
@@ -113,6 +121,7 @@ public class OrderItensController {
 		
 		ProductService item = productServiceController.findById(obj.getItens().getId());
 		newObj.setItens(item);
+		item.setQuantity(item.getQuantity() - obj.getQuantityPurchased());
 		orderItensRepository.save(newObj);
 		orderController.update(obj.getOrder().getId(), order);
 		
