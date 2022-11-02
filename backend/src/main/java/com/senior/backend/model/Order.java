@@ -70,7 +70,7 @@ public class Order extends MaturityLevel3Richardson {
 	}
 
 	public void setAmount(Float amount) {
-		this.setDate(LocalDateTime.now());
+		this.amount = amount;
 	}
 
 	public LocalDateTime getDate() {

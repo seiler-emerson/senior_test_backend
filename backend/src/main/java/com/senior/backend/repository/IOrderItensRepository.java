@@ -17,6 +17,8 @@ public interface IOrderItensRepository extends JpaRepository<OrderItens, Integer
 	@Query("FROM OrderItens WHERE id =:id")
 	OrderItens returnById(@Param("id")Integer id);
 	
-	@Query("SELECT obj FROM OrderItens obj WHERE obj.order_item_id =:order_item_id")
-	List<OrderItens> returnIdOrder(@Param("order_item_id")Integer order_item_id);
+
+//	@Query("SELECT obj FROM OrderItens obj WHERE obj.order_item_id =:order_item_id")
+	@Query("FROM OrderItens WHERE order_item_id =:order_item_id")
+	List<OrderItens> returnIdOrder(@Param("order_item_id")Integer id);
 }

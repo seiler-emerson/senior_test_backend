@@ -2,8 +2,11 @@ package com.senior.backend.controller;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+
+import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -91,15 +94,31 @@ public class OrderController {
 		current.setDiscount(newDataOrder.getDiscount());	
 //		current.setAmount(newDataOrder.getAmount());
 		current.setDate(newDataOrder.getDate());
-		current.setListItens(newDataOrder.getListItens());
 		
+		List<OrderItens> listItens = new ArrayList<>();
 		
-		newDataOrder.getListItens().forEach(item -> {
-			Float price = item.getItens().getPrice();
-			current.setAmount(price);
-			
-		});
+		listItens = orderItemController.findByOrderId(param);
+		current.setListItens(listItens);
+//		current.setAmount(listItens.get(0).getItens().getPrice());
+		System.out.println("LISTA: "+listItens.get(0).getItens().getPrice());
 		
+		Float valorTotal = 0.0f;
+		Float discount = current.getDiscount()/100;
+		
+		for (Integer count = 0 ; count < listItens.size() ; count++) {
+			if(listItens.get(count).getItens().getType() == Type.PRODUCT) {
+				Float priceDiscount = listItens.get(count).getItens().getPrice() * (1-discount) * listItens.get(count).getQuantityPurchased();
+				valorTotal = (valorTotal + priceDiscount);
+			} else {
+				Float priceNoDiscount = listItens.get(count).getItens().getPrice() * listItens.get(count).getQuantityPurchased();
+				valorTotal = (valorTotal + priceNoDiscount);
+			}			
+			System.out.println(valorTotal);
+			current.setAmount(valorTotal);
+		}		
+		
+		System.out.println("PRECO: "+current.getAmount());
+
 		orderRepository.save(current);
 
 		return orderRepository.findById(param);
@@ -129,11 +148,11 @@ public class OrderController {
 		}
 		newObj.setListItens(obj.getListItens());
 		
-		obj.getListItens().forEach(item -> {
-			if(item.getItens().getType() == Type.PRODUCT) {
-				newObj.setAmount(item.getItens().getPrice());
-			}
-		});
+//		obj.getListItens().forEach(item -> {
+//			if(item.getItens().getType() == Type.PRODUCT) {
+//				newObj.setAmount(item.getItens().getPrice());
+//			}
+//		});
 		
 		return orderRepository.save(newObj);
 	}

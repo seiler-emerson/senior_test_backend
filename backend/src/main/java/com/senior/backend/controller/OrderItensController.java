@@ -66,9 +66,9 @@ public class OrderItensController {
 	
 	@GetMapping("findorder/{order_item_id}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<OrderItens> findByOrderId(@PathVariable("order_item_id") Integer order_item_id) {
+	public List<OrderItens> findByOrderId(@PathVariable("order_item_id") Integer id) {
 
-		List<OrderItens> response = orderItensRepository.returnIdOrder(order_item_id);
+		List<OrderItens> response = orderItensRepository.returnIdOrder(id);
 		
 		return response;
 	}
@@ -113,10 +113,10 @@ public class OrderItensController {
 		
 		ProductService item = productServiceController.findById(obj.getItens().getId());
 		newObj.setItens(item);
-		
+		orderItensRepository.save(newObj);
 		orderController.update(obj.getOrder().getId(), order);
 		
-		return orderItensRepository.save(newObj);
+		return newObj;
 	}
 	
 	private void setMaturityLevel3(OrderItens orderItens) {
