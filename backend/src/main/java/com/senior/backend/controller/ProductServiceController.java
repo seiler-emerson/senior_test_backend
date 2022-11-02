@@ -67,7 +67,7 @@ public class ProductServiceController {
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Optional<ProductService> update(@PathVariable("id") int param,
+	public @ResponseBody Optional<ProductService> update(@PathVariable("id") Integer param,
 			@RequestBody ProductService newDataProductService) {
 
 		ProductService current = productServiceRepository.findById(param).get();
@@ -84,7 +84,7 @@ public class ProductServiceController {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody boolean delete(@PathVariable("id") int id) {
+	public @ResponseBody boolean delete(@PathVariable("id") Integer id) {
 		productServiceRepository.deleteById(id);
 
 		return !productServiceRepository.existsById(id);

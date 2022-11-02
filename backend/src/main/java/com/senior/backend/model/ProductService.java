@@ -39,7 +39,6 @@ public class ProductService extends MaturityLevel3Richardson {
 
 	public ProductService(ArrayList<ItemLevel3> links) {
 		super(links);
-		// TODO Auto-generated constructor stub
 	}
 
 	public ProductService(Integer id, String name, UnitMeasurement unitMeasurement, Integer quantity, Float price, Type type,

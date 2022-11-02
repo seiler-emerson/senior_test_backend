@@ -73,7 +73,7 @@ public class OrderController {
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Optional<Order> update(@PathVariable("id") int param, @RequestBody Order newDataOrder) {
+	public @ResponseBody Optional<Order> update(@PathVariable("id") Integer param, @RequestBody Order newDataOrder) {
 
 		Order current = orderRepository.findById(param).get();
 		current.setDiscount(newDataOrder.getDiscount());
@@ -117,7 +117,7 @@ public class OrderController {
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody boolean delete(@PathVariable("id") int id) {
+	public @ResponseBody boolean delete(@PathVariable("id") Integer id) {
 		orderRepository.deleteById(id);
 
 		return !orderRepository.existsById(id);

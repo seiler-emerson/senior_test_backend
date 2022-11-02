@@ -82,7 +82,7 @@ public class OrderItensController {
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Optional<OrderItens> update(@PathVariable("id") int param,
+	public @ResponseBody Optional<OrderItens> update(@PathVariable("id") Integer param,
 			@RequestBody OrderItens newDataOrderItens) {
 
 		OrderItens current = orderItensRepository.findById(param).get();
@@ -105,7 +105,7 @@ public class OrderItensController {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody boolean delete(@PathVariable("id") int id) {
+	public @ResponseBody boolean delete(@PathVariable("id") Integer id) {
 		orderItensRepository.deleteById(id);
 
 		return !orderItensRepository.existsById(id);
