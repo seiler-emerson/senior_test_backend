@@ -107,12 +107,6 @@ public class OrderController {
 		return orderRepository.findById(param);
 	}
 
-	public void getOrderItem(Order obj) {
-
-//		orderItemController
-
-	}
-
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody boolean delete(@PathVariable("id") UUID id) {
