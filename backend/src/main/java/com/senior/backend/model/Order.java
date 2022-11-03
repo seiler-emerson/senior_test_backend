@@ -19,9 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "order_db")
 public class Order extends MaturityLevel3Richardson {
-
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -37,6 +37,8 @@ Acceptance criteria:
 
 ## 📈 **Application Structure Back-end**
 
+![Class Diagrama BackEnd](./assets/test_senior_project.gif)
+
 ![Class Diagrama BackEnd](./assets/Diagrama_BackEnd.png)
 > Back-end Class Diagram
 
