@@ -147,6 +147,7 @@ user: postgres and password: senior123 )
 10. When finished it will be a completion screen, just click finish.
 11. Now in programs open the "pgAdmin" application.
 12. In the left side menu click on PostgreSQL with the right button and navigate to create -> database and create a database with the name senior.
+<br>
 ![example](./assets/create_database.png)
 ![example](./assets/create_database2.png)
 
@@ -161,6 +162,21 @@ You can test the requests through Postman, importing the collections available [
 <br>
 
 ---
+
+<br>
+
+## **📚 Technologies and Concepts**
+
+In this project we use Angular framework with HTML5, CSS3, Bootstrap and apply the following concepts:
+
+1. Git
+2. Java
+3. Spring 
+4. Maven
+5. Jpa
+6. Postgree
+
+----
 
 <br>
 
