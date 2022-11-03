@@ -3,6 +3,7 @@ package com.senior.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,7 +58,7 @@ public class OrderItensController {
 	
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public OrderItens findById(@PathVariable("id") Integer id) {
+	public OrderItens findById(@PathVariable("id") UUID id) {
 
 		OrderItens response = orderItensRepository.returnById(id);
 		
@@ -66,7 +67,7 @@ public class OrderItensController {
 	
 	@GetMapping("findorder/{order_item_id}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<OrderItens> findByOrderId(@PathVariable("order_item_id") Integer id) {
+	public List<OrderItens> findByOrderId(@PathVariable("order_item_id") UUID id) {
 
 		List<OrderItens> response = orderItensRepository.returnIdOrder(id);
 		
@@ -82,7 +83,7 @@ public class OrderItensController {
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Optional<OrderItens> update(@PathVariable("id") Integer param,
+	public @ResponseBody Optional<OrderItens> update(@PathVariable("id") UUID param,
 			@RequestBody OrderItens newDataOrderItens) {
 
 		OrderItens current = orderItensRepository.findById(param).get();
@@ -105,7 +106,7 @@ public class OrderItensController {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody boolean delete(@PathVariable("id") Integer id) {
+	public @ResponseBody boolean delete(@PathVariable("id") UUID id) {
 		orderItensRepository.deleteById(id);
 
 		return !orderItensRepository.existsById(id);

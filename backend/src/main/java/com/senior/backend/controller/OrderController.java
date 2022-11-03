@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -57,7 +58,7 @@ public class OrderController {
 
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Order findById(@PathVariable("id") Integer id) {
+	public Order findById(@PathVariable("id") UUID id) {
 
 		Order response = orderRepository.returnById(id);
 
@@ -73,7 +74,7 @@ public class OrderController {
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Optional<Order> update(@PathVariable("id") Integer param, @RequestBody Order newDataOrder) {
+	public @ResponseBody Optional<Order> update(@PathVariable("id") UUID param, @RequestBody Order newDataOrder) {
 
 		Order current = orderRepository.findById(param).get();
 		current.setDiscount(newDataOrder.getDiscount());
@@ -98,11 +99,8 @@ public class OrderController {
 						* listItens.get(count).getQuantityPurchased();
 				valorTotal = (valorTotal + priceNoDiscount);
 			}
-			System.out.println(valorTotal);
 			current.setAmount(valorTotal);
 		}
-
-		System.out.println("PRECO: " + current.getAmount());
 
 		orderRepository.save(current);
 
@@ -117,7 +115,7 @@ public class OrderController {
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody boolean delete(@PathVariable("id") Integer id) {
+	public @ResponseBody boolean delete(@PathVariable("id") UUID id) {
 		orderRepository.deleteById(id);
 
 		return !orderRepository.existsById(id);

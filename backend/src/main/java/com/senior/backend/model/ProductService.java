@@ -2,7 +2,9 @@ package com.senior.backend.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +21,9 @@ import com.senior.backend.enuns.UnitMeasurement;
 public class ProductService extends MaturityLevel3Richardson {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false, columnDefinition = "UUID default gen_random_uuid()")
+	private UUID id;
 	private String name;
 	private Integer unitMeasurement;
 	private Integer quantity;
@@ -41,7 +44,7 @@ public class ProductService extends MaturityLevel3Richardson {
 		super(links);
 	}
 
-	public ProductService(Integer id, String name, UnitMeasurement unitMeasurement, Integer quantity, Float price, Type type,
+	public ProductService(UUID id, String name, UnitMeasurement unitMeasurement, Integer quantity, Float price, Type type,
 			List<OrderItens> orderItens) {
 		super();
 		this.id = id;
@@ -53,11 +56,11 @@ public class ProductService extends MaturityLevel3Richardson {
 		this.orderItens = orderItens;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

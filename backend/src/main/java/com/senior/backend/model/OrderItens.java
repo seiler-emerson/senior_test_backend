@@ -1,7 +1,9 @@
 package com.senior.backend.model;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +17,9 @@ import javax.persistence.Table;
 public class OrderItens extends MaturityLevel3Richardson {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false, columnDefinition = "UUID default gen_random_uuid()")
+	private UUID id;
 
 	@ManyToOne
 	@JoinColumn(name = "product_service_id")
@@ -36,7 +39,7 @@ public class OrderItens extends MaturityLevel3Richardson {
 		super(links);
 	}
 
-	public OrderItens(Integer id, ProductService itens, Short quantityPurchased, Order order) {
+	public OrderItens(UUID id, ProductService itens, Short quantityPurchased, Order order) {
 		super();
 		this.id = id;
 		this.itens = itens;
@@ -44,11 +47,11 @@ public class OrderItens extends MaturityLevel3Richardson {
 		this.order = order;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

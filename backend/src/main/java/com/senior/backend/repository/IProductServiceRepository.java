@@ -1,5 +1,7 @@
 package com.senior.backend.repository;
 
+import java.util.UUID;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -10,9 +12,9 @@ import com.senior.backend.model.ProductService;
 
 @Repository
 @EnableJpaRepositories
-public interface IProductServiceRepository extends JpaRepository<ProductService, Integer> {
+public interface IProductServiceRepository extends JpaRepository<ProductService, UUID> {
 
 	@Query("FROM ProductService WHERE id =:id")
-	ProductService returnById(@Param("id")Integer id);
+	ProductService returnById(@Param("id")UUID id);
 	
 }

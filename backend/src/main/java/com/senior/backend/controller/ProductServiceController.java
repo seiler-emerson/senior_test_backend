@@ -3,6 +3,7 @@ package com.senior.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,7 +52,7 @@ public class ProductServiceController {
 	
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ProductService findById(@PathVariable("id") Integer id) {
+	public ProductService findById(@PathVariable("id") UUID id) {
 
 		ProductService response = productServiceRepository.returnById(id);
 		
@@ -67,7 +68,7 @@ public class ProductServiceController {
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Optional<ProductService> update(@PathVariable("id") Integer param,
+	public @ResponseBody Optional<ProductService> update(@PathVariable("id") UUID param,
 			@RequestBody ProductService newDataProductService) {
 
 		ProductService current = productServiceRepository.findById(param).get();
@@ -84,7 +85,7 @@ public class ProductServiceController {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody boolean delete(@PathVariable("id") Integer id) {
+	public @ResponseBody boolean delete(@PathVariable("id") UUID id) {
 		productServiceRepository.deleteById(id);
 
 		return !productServiceRepository.existsById(id);

@@ -3,7 +3,9 @@ package com.senior.backend.model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,9 +20,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "order_db")
 public class Order extends MaturityLevel3Richardson {
 
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false, columnDefinition = "UUID default gen_random_uuid()")
+	private UUID id;
 	private Float discount;
 	private Float amount;
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
@@ -40,7 +46,7 @@ public class Order extends MaturityLevel3Richardson {
 		this.setDate(LocalDateTime.now());
 	}
 
-	public Order(Integer id, Float discount, Float amount, LocalDateTime date, List<OrderItens> listItens) {
+	public Order(UUID id, Float discount, Float amount, LocalDateTime date, List<OrderItens> listItens) {
 		super();
 		this.id = id;
 		this.discount = discount;
@@ -49,11 +55,11 @@ public class Order extends MaturityLevel3Richardson {
 		this.listItens = listItens;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
