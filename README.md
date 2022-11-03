@@ -119,18 +119,18 @@ The controller still uses the MaturityLevel3 Class that inherits from ItemLevel3
     - Move the folder to a location of your choice.
     -Select the ``SpringToolSuite4`` application from inside the folder and create a shortcut on the desktop for easy access.
 5. Make a project copy to your machine:
-    - git clone [https://github.com/Red-Team-Entra21-Java/Entra21_Project_EMR_Spring_2022.git](https://github.com/Red-Team-Entra21-Java/Entra21_Project_EMR_Spring_2022.git)
-    - Or a direct download from the page [HERE](https://github.com/Red-Team-Entra21-Java/Entra21_Project_EMR_Spring_2022.git).
+    - git clone [https://github.com/seiler-emerson/senior_test_backend](https://github.com/seiler-emerson/senior_test_backend.git)
+    - Or a direct download from the page [HERE](https://github.com/seiler-emerson/senior_test_backend.git).
 6. Import the project into your Spring Tools Suite.
     - File -> Import -> Maven -> Existing Maven Projects -> Next -> Browse -> Select Downloaded Project -> Finish
 7. A change to the application.properties file is required.
     - It is necessary to define your bank address, username and password.
     - By default these are the data, just when installing the database enter the same data for username and password (
-user: root and password: Mysql123@ )
+user: postgres and password: senior123 )
     ```` 
-    spring.datasource.url=jdbc:mysql://localhost:3306/emr
-    spring.datasource.username=root
-    spring.datasource.password=Mysql123@
+    spring.datasource.url=jdbc:postgresql://localhost:5432/senior
+    spring.datasource.username=postgres
+    pring.datasource.password=senior123
     ````
 
 ## **PostgreeSql**
@@ -150,62 +150,21 @@ user: root and password: Mysql123@ )
 ![example](./assets/create_database.png)
 ![example](./assets/create_database2.png)
 
-    ````
-    CREATE SCHEMA `emr`;
-    ````
-9. Another option is to start with a mass of data, just download it [here](https://github.com/Red-Team-Entra21-Java/Entra21_Project_EMR_Angular_2022/tree/development/data_base_mysql).
-    - Go to the administration tab
-    - Data Import/Restore
-    - Import from Self-Contained File
-    - Start Import
 <br>
 
 ---
 
 ## **📚 Postman**
 
-You can test the requests through Postman, importing the collections available [here](https://github.com/Red-Team-Entra21-Java/Entra21_Project_EMR_Spring_2022/tree/main/request_postman).
+You can test the requests through Postman, importing the collections available [here](https://github.com/seiler-emerson/senior_test_backend/tree/main/collection_postman).
 
 <br>
 
 ---
 
-### **The back-end version of the project developed in SPRING can be found [HERE](https://github.com/Red-Team-Entra21-Java/Entra21_Project_EMR_Spring_2022).**
-
 <br>
 
-
----
-
-## **📚 Trello**
-
-During the development process, the tasks were mapped and executed according to the planning carried out in trello, using the techniques of agile methodologies and kanban.
-
-![Trello](./readme_images/trello.png)
-
-<br>
----
-
-
-
-## **📚 Technologies and Concepts**
-
-In this project we use Angular framework with HTML5, CSS3, Bootstrap and apply the following concepts:
-
-1. Git
-2. HTML
-3. CSS
-4. JAVA
-5. Angular
-6. Spring 
-7. Agile Methodologies
-8. Kanban
-
-----
-
-<br>
-
-## 👨🏻‍🎓  **Authors**
+## 👨🏻‍🎓  **Author**
 
 <br>
 
@@ -217,9 +176,6 @@ In this project we use Angular framework with HTML5, CSS3, Bootstrap and apply t
                 <img style="border-radius: 10px" src="https://avatars.githubusercontent.com/seiler-emerson" width="100px;" alt=""/>
             </a>
         </th>
-		<th>
-            <img style="border-radius: 10px;" src="https://avatars.githubusercontent.com/Wellitonborges" width="100px;" alt=""/>
-        </th>
 	</tr>
 </thead>
 <tbody>
@@ -227,11 +183,6 @@ In this project we use Angular framework with HTML5, CSS3, Bootstrap and apply t
 		<td>
             <a href="https://www.linkedin.com/in/seileremerson/">
                 <img src="https://img.shields.io/badge/-seileremerson-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/seileremerson/" width="100px;" alt=""/>
-            </a>
-        </td>
-		<td>
-            <a href="https://www.linkedin.com/in/welliton-borges-904331190/">
-                <img src="https://img.shields.io/badge/-wellitonborges-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/welliton-borges-904331190/" width="100px;" alt=""/>
             </a>
         </td>
 	</tr>
