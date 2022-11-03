@@ -148,6 +148,7 @@ user: postgres and password: senior123 )
 11. Now in programs open the "pgAdmin" application.
 12. In the left side menu click on PostgreSQL with the right button and navigate to create -> database and create a database with the name senior.
 <br>
+
 ![example](./assets/create_database.png)
 ![example](./assets/create_database2.png)
 
