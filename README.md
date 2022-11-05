@@ -46,7 +46,8 @@ Acceptance criteria:
 
 > Back-end Application Structure
 
-
+## 📈 **Application Structure Front-end**
+![Class Diagrama Frontend](./assets/front_structure.gif)
 <br>
 
 ## 🔀&nbsp; **Application flowchart**
@@ -62,6 +63,7 @@ The system flow is based on the concept:
 
 ## ▶️  **Application in operation**
 
+![SENIOR TESTE GIF](./assets/senior_test_front.gif)
 ![SENIOR TESTE GIF](./assets/test_senior_all.gif)
 
 ----
@@ -156,6 +158,28 @@ user: postgres and password: senior123 )
 
 <br>
 
+## **Angular**
+
+1. Make a project copy to your machine:
+    - git clone [https://github.com/seiler-emerson/senior_test_frontend](https://github.com/seiler-emerson/senior_test_frontend)
+    - Or a direct download from the page [HERE](https://github.com/seiler-emerson/senior_test_frontend).
+2. Import the project into your VSCode.
+    - If you don't have VSCode installed, watch this video I recorded teaching you how to install it. [VIEW VIDEO](https://youtu.be/82GnguThEAQ).
+3. The node must be installed.
+    - If you don't have node installed, go to the page and download it according to your operating system.
+    - Node download page [HERE](https://nodejs.org/en/).
+4.  Angular CLI must be installed.
+    - If the Angular CLI is not installed it will be necessary to install it, for that node must be installed. Run the following command in your terminal:
+    
+    `npm install -g @angular/cli@latest`
+    
+    - After performing the previous steps, it will be necessary to install the dependencies used in the project, with the project page open in the terminal, run:
+    
+    `npm install`
+    
+    - With everything ready, just run the ng serve command and open the link provided in the browser of your choice.
+    
+    `ng serve`
 ---
 
 ## **📚 Postman**
